@@ -1,10 +1,9 @@
 import React from 'react';
 
-import Main from "./src/pages/main";
-import Book from "./src/pages/book";
+import Routes from './src/routes';
 
 const App = () => {
-  return <Book />;
+  return <Routes />;
 }
 
 export default App;
