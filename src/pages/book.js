@@ -8,8 +8,22 @@ const Book = ({navigation}) => {
     const [description, setDescription] = useState();
     const [photo, setPhoto] = useState();
 
+    const isValid = () => {
+        if(title !== undefined && title !== '') {
+            return true;
+        }
+
+        return false;
+    }
+
     const onSave = () => {
-        
+        console.log(`Title: ${title}`);
+        console.log(`Description: ${description}`);
+        if(isValid()) {
+            console.log('Valid!');
+        } else {
+            console.log('Invalid!');
+        }
     }
 
 
@@ -41,7 +55,7 @@ const Book = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity 
             onPress={onSave}
-            style={styles.saveButton}>
+            style={[styles.saveButton, ((!isValid)) ? styles.saveButtonInvalid : '']}>
                 <Text style={styles.saveButtonText}>
                     Register
                 </Text>
@@ -93,6 +107,9 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         marginBottom: 20,
+    },
+    saveButtonInvalid: {
+        opacity: 0.5
     },
     saveButtonText: {
         color: "#fff",
