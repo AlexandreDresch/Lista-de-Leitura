@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import {View, Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Book = ({navigation}) => {
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
+    const [photo, setPhoto] = useState();
+
+    const onSave = () => {
+        
+    }
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.pageTitle}>
@@ -12,17 +21,27 @@ const Book = ({navigation}) => {
             <TextInput
                 style={styles.input}
                 placeholder="Title"
+                value={title}
+                onChangeText={(text) => {
+                    setTitle(text)
+                }}
             />
            <TextInput
                 style={styles.input}
                 placeholder="Description"
                 multiline={true}
                 numberOfLines={4}
+                value={description}
+                onChangeText={(text) => {
+                    setDescription(text)
+                }}
             />
             <TouchableOpacity style={styles.cameraButton}>
                 <Icon name="photo-camera" size={18} color={#fff}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.saveButton}>
+            <TouchableOpacity 
+            onPress={onSave}
+            style={styles.saveButton}>
                 <Text style={styles.saveButtonText}>
                     Register
                 </Text>
