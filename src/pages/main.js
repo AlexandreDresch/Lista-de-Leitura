@@ -14,16 +14,22 @@ const Main = ({navigation}) => {
     })
   }, []);
 
+  const onNewBook = () => {
+    navigation.navigate('Book');
+  }
+
+  const onBookEdit = (bookId) => {
+    const book = books.find(item => item.id === bookId)
+    navigation.navigate('book', {book: book, isEdit: true});
+  };
+
   return(
     <View style={styles.container}>
       <View style={styles.toolbox}>
         <Text style={styles.title}>Reading List</Text>
         <TouchableOpacity 
         style={styles.toolboxButton}
-        onPress={() => {
-          navigation.navigate("Book");
-        }}
-        >
+        onPress={onNewBook}>
           <Icon name="add" size={14} color="#fff"/>
         </TouchableOpacity>
       </View>
@@ -31,9 +37,14 @@ const Main = ({navigation}) => {
         data={books} 
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.itemButton}>
-            <Text style={styles.itemText}>{item.title}</Text>
-          </TouchableOpacity>
+          <View style={styles.itemsContainer}>
+            <TouchableOpacity style={styles.itemButton}>
+              <Text style={styles.itemText}>{item.title}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.editButton} onPress={() => onBookEdit(item.id)}>
+              <Icon name="create" size={14} color="#2ecc71"/>
+            </TouchableOpacity>
+          </View>
         )} 
       />
     </View>
@@ -62,7 +73,13 @@ const styles = StyleSheet.create({
   justifyContent: "center",
   alignItems: "center",
   },
+  itemsContainer: {
+    flexDirection: "row"
+  },
   itemButton: {
+    flex: 1,
+  },
+  editButton: {
 
   },
   itemText: {
