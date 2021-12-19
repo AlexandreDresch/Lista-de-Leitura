@@ -23,6 +23,12 @@ const Main = ({navigation}) => {
     navigation.navigate('book', {book: book, isEdit: true});
   };
 
+  const onBookDelete = async (bookId) => {
+    const newBooks = books.filter(item => item.id !== bookId);
+    await AsyncStorage.setItem("books", newBooks);
+    setBooks(newBooks);
+  }
+
   return(
     <View style={styles.container}>
       <View style={styles.toolbox}>
@@ -43,6 +49,9 @@ const Main = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.editButton} onPress={() => onBookEdit(item.id)}>
               <Icon name="create" size={14} color="#2ecc71"/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.deleteButton} onPress={() => onBookDelete(item.id)}>
+              <Icon name="delete" size={14} color="#e74c3c"/>
             </TouchableOpacity>
           </View>
         )} 
@@ -80,6 +89,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   editButton: {
+
+  },
+  deleteButton: {
 
   },
   itemText: {
