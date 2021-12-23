@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, AsyncStorage } from "react-native";
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, AsyncStorage, Modal } from "react-native";
+import Constants from 'expo-constants';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Photo from '../components/Photo';
+import Camera from '../components/Camera';
 
 const Book = ({navigation}) => {
     const book = navigation.getParam("book", {
@@ -17,6 +21,7 @@ const Book = ({navigation}) => {
     const [description, setDescription] = useState(book.description);
     const [read, setRead] = useState(book.read);
     const [photo, setPhoto] = useState(book.photo);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         AsyncStorage.getItem("books").then(data => {
@@ -113,6 +118,19 @@ const Book = ({navigation}) => {
                     Cancel
                 </Text>
             </TouchableOpacity>
+
+            <Modal 
+            animationType="slide"
+            visible={isModalVisible()}
+            >
+                {
+                    photo ? (
+                        <Photo photo={photo}/>
+                    ) : (
+                        <Camera />
+                    )
+                }
+            </Modal>
         </View>
     )
 }
@@ -121,6 +139,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
+        paddingTop: Constants.statusBarHeight,
     },
     pageTitle: {
         textAlign: "center",

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { AsyncStorage } from 'react-native';
 import {View, Text, TouchableOpacity, FlatList, StyleSheet, AsyncStorage} from 'react-native';
+import Constants from 'expo-constants';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 5,
+    paddingTop: Constants.statusBarHeight,
   },
   toolbox: {
   flexDirection: "row",
