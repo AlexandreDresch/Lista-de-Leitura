@@ -98,7 +98,12 @@ const Book = ({navigation}) => {
                     setDescription(text)
                 }}
             />
-            <TouchableOpacity style={styles.cameraButton}>
+            <TouchableOpacity 
+            style={styles.cameraButton}
+            onPress={() => {
+                setIsModalVisible(true)
+            }}
+            >
                 <Icon name="photo-camera" size={18} color={#fff}/>
             </TouchableOpacity>
             <TouchableOpacity 
