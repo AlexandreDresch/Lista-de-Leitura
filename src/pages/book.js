@@ -72,8 +72,11 @@ const Book = ({navigation}) => {
         } else {
             console.log('Invalid!');
         }
-    }
+    };
 
+    const onCloseModal = () => setModalVisible(false);
+
+    const onChangePhoto = (newPhoto) => setPhoto(newPhoto);
 
     return (
         <View style={styles.container}>
@@ -130,9 +133,13 @@ const Book = ({navigation}) => {
             >
                 {
                     photo ? (
-                        <Photo photo={photo}/>
+                        <Photo 
+                            photo={photo}
+                            onDeletePhoto={onChangePhoto}
+                            onClosePicture={onCloseModal}
+                        />
                     ) : (
-                        <Camera />
+                        <Camera onCloseCamera={onCloseModal} onTakePicture={onChangePhoto}/>
                     )
                 }
             </Modal>
