@@ -48,7 +48,7 @@ const Main = ({navigation}) => {
         <TouchableOpacity 
         style={styles.toolboxButton}
         onPress={onNewBook}>
-          <Icon name="add" size={14} color="#fff"/>
+          <Icon name="add" size={30} color="#fff"/>
         </TouchableOpacity>
       </View>
       <FlatList 
@@ -63,10 +63,10 @@ const Main = ({navigation}) => {
               <Text style={[styles.itemText, item.read ? styles.itemRead : '']}>{item.title}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.editButton} onPress={() => onBookEdit(item.id)}>
-              <Icon name="create" size={14} color="#2ecc71"/>
+              <Icon name="create" size={25} color="#2ecc71"/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.deleteButton} onPress={() => onBookDelete(item.id)}>
-              <Icon name="delete" size={14} color="#e74c3c"/>
+              <Icon name="delete" size={25} color="#e74c3c"/>
             </TouchableOpacity>
           </View>
         )} 
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 5,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight + 2,
+    backgroundColor: "#f0ee87",
   },
   toolbox: {
   flexDirection: "row",
@@ -87,19 +88,21 @@ const styles = StyleSheet.create({
   },
   title: {
   flex: 1,
-  fontSize: 16,
+  fontSize: 30,
   color: "#3498db",
   },
   toolboxButton: {
   backgroundColor: "#3498db",
   borderRadius: 50,
-  width: 22,
-  height: 22,
+  width: 40,
+  height: 40,
   justifyContent: "center",
   alignItems: "center",
   },
   itemsContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "#d7dd75",
   },
   itemButton: {
     flex: 1,
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
 
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 26,
   }
 });
 
